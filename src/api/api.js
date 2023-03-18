@@ -1,9 +1,21 @@
-export const getQuiz = async (amount = "10", type = "multiple", category = "10", difficulty = "easy") => {
+import axios from "axios";
+
+export const getQuiz = async (amount = "", type = "", category = "", difficulty = "") => {
    try {
-    let url = `https://opentdb.com/api.php?amount=${amount}&category=10&difficulty=easy&type=multiple`;
+      // let url = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`;
+      let url = `https://opentdb.com/api.php?amount=${amount}`;
+    if(type === "multiple" || type === "boolean") {
+      url = url + `&type=${type}`
+      console.log(`this is ${type}`)
+    }
+    else if (category !== "") {
+      url = url + `&category=${category}`
+    }
+    console.log(url)
     const response = await axios.get(url);
+    console.log(response)
     return response
    } catch (error) {
-    console.log(error)
+    console.error(error)
    }
 };
