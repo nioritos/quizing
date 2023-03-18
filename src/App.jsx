@@ -34,7 +34,7 @@ function App() {
       <main className="container">
         <section className="content">
           <img src="https://safdarjamal.github.io/quiz-app/static/media/mind.525a3ae0.svg" alt="quiz icon" />
-          <form>
+          <form action="" method='get'>
             <fieldset>
               <legend>
                 <h1>The Ultimate Trivia Quiz</h1>
