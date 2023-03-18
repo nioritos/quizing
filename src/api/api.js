@@ -8,11 +8,15 @@ export const getQuiz = async (amount = "", type = "", category = "", difficulty 
       url = url + `&type=${type}`
       console.log(`this is ${type}`)
     }
-    else if (category !== " ") {
-      url = url + `&category=${category}`
+    if (category != "") {
+      url = url += `&category=${category}`
       console.log(`this is ${category}`)
     }
-    console.log(url)
+    if (difficulty != " ") {
+      url = url += `&difficulty=${difficulty}`
+      console.log(`this is ${difficulty}`)
+    }
+    console.log(url);
     const response = await axios.get(url);
     console.log(response)
     return response
