@@ -3,14 +3,18 @@ import './App.css';
 import {BsFillPlayFill} from 'react-icons/bs';
 import { getQuiz } from './api/api';
 
-
 function App() {
+  const [renderQuests, setRenderQuests] = useState([])
   const [difficulty, setDifficulty] = useState("");
   const [categories, setCategories] = useState("");
-  const [indexQuest, setIndexQuest] = useState("")
+  const [indexQuest, setIndexQuest] = useState(0)
   const [questions, setQuestions] = useState(0);
+  const [canRender, setCanRender] = useState(false)
   const [types, setTypes] = useState("");
 
+  function verify() {
+
+  }
 
   const onClickHandler = async () => {
     if(questions === 0) {
@@ -18,6 +22,8 @@ function App() {
     }else {
       const fields = await getQuiz(questions, types, categories, difficulty);
       console.log(fields);
+      setRenderQuests(fields.data.results);
+      setCanRender(true)
     }
   }
 
@@ -100,6 +106,14 @@ function App() {
             </fieldset>
           </form>
         </section>
+
+        {
+          canRender ? (
+              <>
+              <h1>{renderQuests[indexQuest].question}</h1>
+              </>
+            ) : false
+        }
       </main>
       
     </div>
